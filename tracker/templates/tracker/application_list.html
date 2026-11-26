@@ -24,6 +24,7 @@
       {{ app.follow_up_date|default:"-" }}{% if app.follow_up_due %} (due){% endif %}
     </td>
     <td>
+      <a href="{% url 'application_analyze' app.pk %}">Analyze</a> |
       <a href="{% url 'application_edit' app.pk %}">Edit</a> |
       <a href="{% url 'application_delete' app.pk %}">Delete</a>
     </td>

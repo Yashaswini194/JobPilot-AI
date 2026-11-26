@@ -1,5 +1,8 @@
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+
+from .ai import analyze_job
 from .forms import ApplicationForm
 from .models import Application
 
@@ -37,3 +40,25 @@ class ApplicationUpdateView(UpdateView):
 class ApplicationDeleteView(DeleteView):
     model = Application
     success_url = reverse_lazy("application_list")
+
+
+def analyze_application(request, pk):
+    app = get_object_or_404(Application, pk=pk)
+    result = error = None
+    resume = request.session.get("resume_text", "")
+
+    if request.method == "POST":
+        resume = request.POST.get("resume_text", "").strip()
+        request.session["resume_text"] = resume
+        if not app.job_description.strip():
+            error = "This application has no job description. Click Edit and paste it first."
+        elif not resume:
+            error = "Please paste your resume text."
+        else:
+            try:
+                result = analyze_job(app.job_description, resume)
+            except Exception as exc:
+                error = f"AI analysis failed: {exc}"
+
+    return render(request, "tracker/analyze.html",
+                  {"app": app, "result": result, "error": error, "resume": resume})
