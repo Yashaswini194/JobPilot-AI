@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JobPilot AI</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 0; background: #f4f6fb; color: #1f2937; }
+    header { background: #1e3a8a; color: #fff; padding: 14px 28px; font-size: 20px; font-weight: 600; }
+    main { max-width: 1000px; margin: 24px auto; padding: 0 16px; }
+    .top { display: flex; justify-content: space-between; align-items: center; }
+    .btn { background: #2563eb; color: #fff; padding: 8px 14px; border-radius: 6px; text-decoration: none; border: 0; cursor: pointer; font-size: 14px; }
+    .btn.danger { background: #dc2626; }
+    .stats { display: flex; gap: 10px; flex-wrap: wrap; margin: 16px 0; }
+    .stat { background: #fff; padding: 8px 14px; border-radius: 8px; text-decoration: none; color: inherit; box-shadow: 0 1px 2px #0001; }
+    table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 2px #0001; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #e5e7eb; font-size: 14px; }
+    th { background: #eef2ff; }
+    .badge { padding: 3px 9px; border-radius: 99px; font-size: 12px; background: #e0e7ff; }
+    .badge.interview { background: #fef3c7; } .badge.offer { background: #d1fae5; } .badge.rejected { background: #fee2e2; }
+    .due { color: #dc2626; font-weight: 600; }
+    form p { margin: 12px 0; } form label { display: block; font-weight: 600; margin-bottom: 4px; }
+    form input, form select, form textarea { width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; }
+    .card { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 1px 2px #0001; }
+  </style>
+</head>
+<body>
+  <header>✈️ JobPilot AI</header>
+  <main>{% block content %}{% endblock %}</main>
+</body>
+</html>
